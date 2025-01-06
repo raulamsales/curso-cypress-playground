@@ -43,10 +43,10 @@ Agora é hora de colocar os novos conhecimentos em prática.
 
 Quer manter contato comigo? Participe do grupo [**Talking About Testing**](https://www.linkedin.com/groups/12492726/) no LinkedIn.
 
-Confira também os [outros cursos](https://hotmart.com/pt-br/club/talking-about-testing) da Escola Talking About Testing.
+Confira também os [outros cursos](https://www.udemy.com/user/walmyr/) da Escola Talking About Testing.
 
 > Por fim, compartilhe o certificado do curso em seu perfil do LinkedIn para mostrar que você pode criar testes automatizados com Cypress utilizando desde de recursos simples, até funcionalidades avançadas. Use as _hashtags_ **#TalkingAboutTesting #EscolaTAT #CypressPlaygrund #Cypress**.
 >
 > 👨‍🏫 Lembre-se de me marcar em sua publicação. [Aqui está meu perfil no LinkedIn](https://www.linkedin.com/in/walmyr-lima-e-silva-filho).
 
-Bons testes e até o [próximo curso](https://wlsf82.hotmart.host/pagina-de-vendas-dce77ce5-84b1-4c43-a18e-7a58564cef66?sck=HOTMART_MEM_CA&off=t7ab9a03)! 🚀
+Bons testes e até o próximo curso! 🚀
