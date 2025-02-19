@@ -7,7 +7,7 @@ describe('template spec', () => {
     cy.get('#promotional-banner')
     .should('be.visible')
   });
-  it.only('teste que clica no botão Subscribe', () => {
+  it('teste que clica no botão Subscribe', () => {
     cy.clock()
     cy.get('button[type="submit"]')
     .should('contain', 'Subscribe')
@@ -18,5 +18,13 @@ describe('template spec', () => {
     cy.tick(3000)
     cy.get('#success')
     .should('not.be.visible')
+  });
+
+  it.only('Sign Here Test', () => {
+    cy.get('#signature-textarea')
+    .type("TesteNome")
+    .should('have.value', 'TesteNome')
+
+    cy.get('#signature').should('contain', 'TesteNome')
   });
 })
