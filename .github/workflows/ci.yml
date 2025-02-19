@@ -1,17 +1,17 @@
-name: Cypress Tests
-on:
-  push:
-    branches: [ main ]
+name: End-to-end tests
+on: push
 jobs:
   cypress-run:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
-      - name: Checkout do código
-        uses: actions/checkout@v2
-      - name: Executar testes Cypress
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cypress run
         uses: cypress-io/github-action@v6
         env:
-          MINHA_CHAVE_SECRETA: ${{ secrets.MINHA_CHAVE_SECRETA }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+        with:
+          command: npm run test:cloud
 
 
 # name: End-to-end tests
