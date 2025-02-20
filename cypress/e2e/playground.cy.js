@@ -20,11 +20,31 @@ describe('template spec', () => {
     .should('not.be.visible')
   });
 
-  it.only('Sign Here Test', () => {
+  it('Sign Here Test', () => {
     cy.get('#signature-textarea')
     .type("TesteNome")
     .should('have.value', 'TesteNome')
 
     cy.get('#signature').should('contain', 'TesteNome')
+  });
+
+  it('teste que digite o seu nome no segundo campo “Sign here” e marque a caixa de seleção “Show signatures preview".', () => {
+    cy.get('#signature-textarea-with-checkbox')
+    .type('MyName')
+    .should('have.value', 'MyName')
+
+    cy.get('#signature-checkbox').check().should('be.checked')
+    cy.get('#signature-triggered-by-check').should('be.visible').contains('MyName')
+
+    cy.get('#signature-checkbox').uncheck().should('not.be.checked')
+    cy.get('#signature-triggered-by-check').should('not.be.visible')
+  });
+
+  it.only('teste que marca os radio buttons On e Off', () => {
+    cy.get('input[type="radio"]#on').check().should('be.checked')
+    cy.get('#on-off').should('contain','ON')
+
+    cy.get('input[type="radio"]#off').check().should('be.checked')
+    cy.get('#on-off').should('contain','OFF')
   });
 })
