@@ -40,11 +40,22 @@ describe('template spec', () => {
     cy.get('#signature-triggered-by-check').should('not.be.visible')
   });
 
-  it.only('teste que marca os radio buttons On e Off', () => {
+  it('teste que marca os radio buttons On e Off', () => {
     cy.get('input[type="radio"]#on').check().should('be.checked')
     cy.get('#on-off').should('contain','ON')
 
     cy.get('input[type="radio"]#off').check().should('be.checked')
     cy.get('#on-off').should('contain','OFF')
+  });
+
+  it.only('teste que selecione um dos tipos disponíveis ', () => {
+    cy.get('#selection-type').select('Basic')
+    cy.get('#selection-type').should('contain', 'Basic')
+
+    cy.get('#selection-type').select('standard')
+    cy.get('#selection-type').should('have.value', 'standard')
+
+    cy.get('#selection-type').select(3).should('contain', 'VIP')
+    cy.get('#select-selection > strong').should('contain', 'VIP')
   });
 })
