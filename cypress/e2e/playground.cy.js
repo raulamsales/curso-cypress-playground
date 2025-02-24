@@ -49,13 +49,14 @@ describe('template spec', () => {
   });
 
   it.only('teste que selecione um dos tipos disponíveis ', () => {
-    cy.get('#selection-type').select('Basic')
-    cy.get('#selection-type').should('contain', 'Basic')
+   cy.get('#selection-type').select('Basic')
+    cy.get('#selection-type').should('have.value', 'basic')
 
     cy.get('#selection-type').select('standard')
     cy.get('#selection-type').should('have.value', 'standard')
 
-    cy.get('#selection-type').select(3).should('contain', 'VIP')
+    cy.get('#selection-type').select(3)
+    cy.get('#selection-type').should('have.value', 'vip')
     cy.get('#select-selection > strong').should('contain', 'VIP')
   });
 })
