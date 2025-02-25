@@ -48,7 +48,7 @@ describe('template spec', () => {
     cy.get('#on-off').should('contain','OFF')
   });
 
-  it.only('teste que selecione um dos tipos disponíveis ', () => {
+  it('teste que selecione um dos tipos disponíveis ', () => {
    cy.get('#selection-type').select('Basic')
     cy.get('#selection-type').should('have.value', 'basic')
 
@@ -58,5 +58,20 @@ describe('template spec', () => {
     cy.get('#selection-type').select(3)
     cy.get('#selection-type').should('have.value', 'vip')
     cy.get('#select-selection > strong').should('contain', 'VIP')
+  });
+
+  it('teste que seleciona algumas frutas e certifique-se de que as frutas corretas sejam exibidas.', () => {
+    cy.get('#fruit').select(['apple', 'cherry', 'elderberry'])
+    cy.get('#fruit')
+    .invoke('val')
+    .should('deep.equal', ['apple', 'cherry', 'elderberry'])
+  });
+
+  it.only('este que seleciona um arquivo e certifique-se de que o nome correto do arquivo seja exibido.', () => {
+    cy.get('#file-upload')
+    .selectFile('cypress/fixtures/example.json')
+    .should('have.prop', 'files')
+    .its('0.name')
+    .should('be.equal', 'example.json')
   });
 })
