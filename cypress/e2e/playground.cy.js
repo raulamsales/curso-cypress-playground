@@ -80,6 +80,6 @@ describe('template spec', () => {
     cy.contains('button', 'Get TODO').click()
     cy.wait('@getToDo')
     .its('response.statusCode')
-    .should('be.equal' , '200')
+    .should('be.equal' , 200)
   });
 })
