@@ -67,11 +67,19 @@ describe('template spec', () => {
     .should('deep.equal', ['apple', 'cherry', 'elderberry'])
   });
 
-  it.only('este que seleciona um arquivo e certifique-se de que o nome correto do arquivo seja exibido.', () => {
+  it('este que seleciona um arquivo e certifique-se de que o nome correto do arquivo seja exibido.', () => {
     cy.get('#file-upload')
     .selectFile('cypress/fixtures/example.json')
     .should('have.prop', 'files')
     .its('0.name')
     .should('be.equal', 'example.json')
+  });
+
+  it.only('teste que intercepte a requisição acionada ao clicar no botão Get TODO', () => {
+    cy.intercept('GET', 'https://jsonplaceholder.typicode.com/todos/1').as('getToDo')
+    cy.contains('button', 'Get TODO').click()
+    cy.wait('@getToDo')
+    .its('response.statusCode')
+    .should('be.equal' , '200')
   });
 })
