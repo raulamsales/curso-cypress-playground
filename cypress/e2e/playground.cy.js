@@ -75,10 +75,19 @@ describe('template spec', () => {
     .should('be.equal', 'example.json')
   });
 
-  it.only('teste que intercepte a requisição acionada ao clicar no botão Get TODO', () => {
-    cy.intercept('GET', 'https://jsonplaceholder.typicode.com/todos/1').as('getToDo')
+  it('teste que intercepte a requisição acionada ao clicar no botão Get TODO', () => {
+    cy.intercept('GET', 'https://jsonplaceholder.typicode.com/todos/1')
+    .as('getToDo')
     cy.contains('button', 'Get TODO').click()
     cy.wait('@getToDo')
+    .its('response.statusCode')
+    .should('be.equal' , 200)
+  });
+
+  it.only('teste que intercepte a requisição acionada ao clicar no botão Get TODO, mas desta vez, use uma fixture como resposta da requisição', () => {
+    cy.intercept('GET', 'https://jsonplaceholder.typicode.com/todos/1', { fixture: 'todo'}).as('getTodo')
+    cy.contains('button', 'Get TODO').click()
+    cy.wait('@getTodo')
     .its('response.statusCode')
     .should('be.equal' , 200)
   });
