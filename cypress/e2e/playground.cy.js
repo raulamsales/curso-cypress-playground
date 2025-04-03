@@ -74,7 +74,7 @@ describe('template spec', () => {
     .its('0.name')
     .should('be.equal', 'example.json')
   });
-
+      
   it('teste que intercepte a requisição acionada ao clicar no botão Get TODO', () => {
     cy.intercept('GET', 'https://jsonplaceholder.typicode.com/todos/1')
     .as('getToDo')
@@ -84,11 +84,21 @@ describe('template spec', () => {
     .should('be.equal' , 200)
   });
 
-  it.only('teste que intercepte a requisição acionada ao clicar no botão Get TODO, mas desta vez, use uma fixture como resposta da requisição', () => {
+  it('teste que intercepte a requisição acionada ao clicar no botão Get TODO, mas desta vez, use uma fixture como resposta da requisição', () => {
     cy.intercept('GET', 'https://jsonplaceholder.typicode.com/todos/1', { fixture: 'todo'}).as('getTodo')
     cy.contains('button', 'Get TODO').click()
     cy.wait('@getTodo')
     .its('response.statusCode')
     .should('be.equal' , 200)
+  });
+
+  it.only('teste que simula falha na API', () => {
+    cy.intercept('GET', 'https://jsonplaceholder.typicode.com/todos/1', { statusCode: 500 }).as('serverFailure')
+    cy.contains('button', 'Get TODO').click()
+    cy.wait('@serverFailure')
+    .its('response.statusCode')
+    .should('be.equal', 500)
+
+    cy.get('#intercept > .error').should('be.visible')
   });
 })
