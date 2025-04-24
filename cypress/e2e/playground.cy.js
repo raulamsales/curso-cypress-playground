@@ -102,11 +102,17 @@ describe('template spec', () => {
     cy.get('#intercept > .error').should('be.visible')
   });
 
-  it.only('Simulando uma falha na rede', () => {
+  it('Simulando uma falha na rede', () => {
     cy.intercept('GET', 'https://jsonplaceholder.typicode.com/todos/1', { forceNetworkError: true }).as('networkError')
     cy.contains('button', 'Get TODO').click()
     //cy.wait('@networkError')
     cy.contains('.error', "Oops, something went wrong. Check your internet connection, refresh the page, and try again.").should('be.visible')
     //cy.get('#intercept > .error').should('contain', 'Oops, something went wrong. Check your internet connection, refresh the page, and try again.')
+  });
+
+  it.only('Criando um simples teste de API com Cypress', () => {
+    cy.request('GET', 'https://jsonplaceholder.typicode.com/todos/1')
+    .its('status')
+    .should('be.equal', 200)
   });
 })
